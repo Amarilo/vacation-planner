@@ -1,0 +1,20 @@
+<nav class="sidenav">
+    <section class="nav-group collapsible" *ngIf="showYears">
+        <input id="tabexample1" type="checkbox">
+        <label for="tabexample1">Metai</label>
+        <ul class="nav-list">
+            <li *ngFor="let item of years"><a class="nav-link" 
+                [ngClass]="{'active': isSelected(item.year)}"
+                (click)="selectYear(item)">{{item.year}}</a></li>
+        </ul>
+    </section>
+    <section class="nav-group collapsible">
+        <input id="tabexample1" type="checkbox">
+        <label for="tabexample1">Personalas</label>
+        <ul class="nav-list">
+            <li *ngFor="let person of persons"><a class="nav-link" 
+                [ngClass]="{'active': isSelected(person.name)}"
+                (click)="selectPerson(person)">{{person.name}}</a></li>
+        </ul>
+    </section>
+</nav>

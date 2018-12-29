@@ -1,16 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localeLT from '@angular/common/locales/lt';
+
+registerLocaleData(localeLT);
 
 import { AppComponent } from './app.component';
+import { MonthViewComponent } from './month-view/month-view.component';
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SideNavPersonsComponent } from './side-nav-persons/side-nav-persons.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MonthViewComponent,
+    SideNavPersonsComponent,
+    AdminPageComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ClarityModule,
+    BrowserAnimationsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'lt'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

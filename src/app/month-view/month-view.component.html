@@ -1,0 +1,54 @@
+<div class="clr-row clr-justify-content-end vacation-info-div">
+  <button class="btn btn-primary" (click)="updatePerson()">Išsaugoti Šiandienos Duomenis</button>
+  <span class="vacation-info">
+    <span>
+      Nuo: <b>{{uiSelectionService.selectedPerson.from_date || 'YYYY-MM-DD'}}</b>
+    </span>
+    <span>
+      Sukaupta: <b>{{vacations.gathered || 0}}</b>
+    </span>
+    <span>
+      Paimta: <b>{{vacations.taken || 0}}</b>
+    </span>
+    <span>
+      Liko: <b>{{vacations.remaining || 0}}</b>
+    </span>
+  </span>
+</div>
+  
+<div class="clr-row">
+  <div class="clr-col">
+    <clr-icon shape="caret left" size="64" (click)="downMonth()" class="date-arrow"></clr-icon>
+    <span class="selected-month">{{date.format('YYYY-MM')}}</span>
+    <clr-icon shape="caret right" size="64" (click)="upMonth()" class="date-arrow"></clr-icon>
+    <input type="date" [(clrDate)]="selectedDate" (clrDateChange)="changeDate()">
+    <div style="display: inline-block; text-align: center;">
+      <div>
+        <b>Žymėti:</b> 
+      </div>
+      <hr style="border-color: black">
+      <div class="toggle-switch" style="margin-right: 0px">
+          <input type="checkbox" id="toggle_1" [(ngModel)]="selectionIsHolidays">
+          <label for="toggle_1">Atostogas</label>
+      </div>
+      <label for="">Nedarbo dienas</label>
+    </div>
+    
+  </div>
+</div>
+<div class="clr-row">
+  <div class="clr-col day-name" *ngFor="let name of weekDayNames">{{name}}</div>
+</div>
+
+<div class="clr-row" *ngFor="let week of monthData">
+  <div *ngFor="let day of week" 
+  class="clr-col day-square" 
+  [ngClass]="{'weekend': isWeekend(day), 'other-month': isOtherMonth(day), 
+              'vacation': isVacation(day), 'selected-days': isSelected(day),
+            'calc-day': isCurrent(day)}" 
+  (click)=select(day) (mouseenter)="hover(day)">
+    <span>
+      {{day.format('DD')}}
+    </span>
+  </div>
+</div>

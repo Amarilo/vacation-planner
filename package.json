@@ -1,13 +1,20 @@
 {
-  "name": "frontend",
+  "name": "skaiciuokle",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "electron .",
+    "build:std": "ng build",
+    "build": "ng build --base-href && electron .",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serve": "ng serve --watch",
+    "postinstall": "install-app-deps",
+    "builder": "build --win --ia32",
+    "rebuild": "electron-rebuild -f -a win32 -w sqlite3",
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=x64 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Vacation Planner\"",
+    "package-linux": "electron-packager . --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/island_icon.png --prune=true --out=release-builds"
   },
   "private": true,
   "dependencies": {
@@ -20,8 +27,14 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "@clr/angular": "^1.0.3-patch",
+    "@clr/icons": "^1.0.3-patch",
+    "@clr/ui": "^1.0.3-patch",
+    "@webcomponents/custom-elements": "^1.0.0",
     "core-js": "^2.5.4",
+    "moment": "^2.23.0",
     "rxjs": "~6.2.0",
+    "sqlite3": "^4.0.4",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -33,6 +46,9 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.3.0",
+    "electron-builder": "^20.38.4",
+    "electron-packager": "^13.0.1",
+    "electron-rebuild": "^1.8.2",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
@@ -43,6 +59,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~2.9.2"
+    "typescript": "~2.9.2",
+    "electron": "^4.0.0"
   }
 }

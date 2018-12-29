@@ -1,0 +1,103 @@
+
+<button class="btn btn-success" (click)="addPersonModalOpen = true">
+    <clr-icon shape="plus"></clr-icon> 
+    Prideti Darbuotoja
+</button>
+<button class="btn btn-success" (click)="addYearModalOpen = true">
+    <clr-icon shape="plus"></clr-icon>
+    Prideti Metus
+</button>
+<hr>
+
+<form clrForm *ngIf="!isYear()" (ngSubmit)="onPersonUpdate()">
+    <clr-input-container>
+        <label>Vardas</label>
+        <input clrInput type="text" [(ngModel)]="selected.name" name="name" />
+    </clr-input-container>
+    <clr-date-container>
+        <label>Data</label>
+        <input clrDate type="date" [(ngModel)]="selected.from_date" name="from_date" />
+    </clr-date-container>
+    <clr-input-container>
+        <label>Atostogu dienos</label>
+        <input clrInput type="number" [(ngModel)]="selected.vacation_days" name="vacation_days" />
+    </clr-input-container>
+    <div>
+        <input type="submit" value="Atnaujinti" class="btn btn-primary" [disabled]="!validPerson(selected)">
+    </div>
+    <div>
+        <input type="button" value="Trinti" class="btn btn-danger" (click)="deleteModalOpen = true">
+    </div>
+</form>
+
+<form clrForm *ngIf="isYear()" (ngSubmit)="onYearUpdate()">
+    <clr-input-container>
+        <label>Metai</label>
+        <input clrInput type="number" [(ngModel)]="selected.year" name="year" />
+    </clr-input-container>
+    <clr-input-container>
+        <label>Darbo dienos</label>
+        <input clrInput type="number" [(ngModel)]="selected.business_days" name="businessDays" />
+    </clr-input-container>
+    <div>
+        <input type="submit" value="Atnaujinti" class="btn btn-primary" [disabled]="!validYear(selected)">
+    </div>
+    <div>
+        <input type="button" value="Trinti" class="btn btn-danger" (click)="deleteModalOpen = true">
+    </div>
+</form>
+
+<clr-modal [(clrModalOpen)]="deleteModalOpen" [clrModalClosable]="false">
+    <h3 class="modal-title">Ištrinti</h3>
+    <div class="modal-body">
+        <p>Ar tikrai norite ištrinti {{getSelectedIdentifier()}}?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="deleteModalOpen = false">Ne</button>
+        <button type="button" class="btn btn-primary" (click)="deleteSelected()">Taip</button>
+    </div>
+</clr-modal>
+
+<clr-modal [(clrModalOpen)]="addPersonModalOpen">
+    <h3 class="modal-title">Pridėti darbuotoją</h3>
+    <div class="modal-body">
+        <form clrForm >
+            <clr-input-container>
+                <label>Vardas</label>
+                <input clrInput type="text" [(ngModel)]="newPerson.name" name="name" required/>
+            </clr-input-container>
+            <clr-date-container>
+                <label>Data</label>
+                <input clrDate type="date" [(ngModel)]="newPerson.from_date" name="from_date" required/>
+            </clr-date-container>
+            <clr-input-container>
+                <label>Atostogu dienos</label>
+                <input clrInput type="number" [(ngModel)]="newPerson.vacation_days" name="vacation_days" required/>
+            </clr-input-container>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="addPersonModalOpen = false">Atšaukti</button>
+        <button type="button" class="btn btn-primary" (click)="addPerson()" [disabled]="!validPerson(newPerson)">Pridėti</button>
+    </div>
+</clr-modal>
+
+<clr-modal [(clrModalOpen)]="addYearModalOpen">
+        <h3 class="modal-title">Pridėti Metus</h3>
+        <div class="modal-body">
+            <form clrForm >
+                <clr-input-container>
+                    <label>Metai</label>
+                    <input clrInput type="number" [(ngModel)]="newYear.year" name="year" placeholder="2020" required/>
+                </clr-input-container>
+                <clr-input-container>
+                    <label>Darbo dienos</label>
+                    <input clrInput type="number" [(ngModel)]="newYear.business_days" name="businessDays" placeholder="250" required/>
+                </clr-input-container>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" (click)="addYearModalOpen = false">Atšaukti</button>
+            <button type="button" class="btn btn-primary" (click)="addYear()" [disabled]="!validYear(newYear)">Pridėti</button>
+        </div>
+    </clr-modal>
