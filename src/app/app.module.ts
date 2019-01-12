@@ -12,13 +12,15 @@ import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideNavPersonsComponent } from './side-nav-persons/side-nav-persons.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { VacationDatesTableComponent } from './vacation-dates-table/vacation-dates-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MonthViewComponent,
     SideNavPersonsComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    VacationDatesTableComponent
   ],
   imports: [
     BrowserModule,

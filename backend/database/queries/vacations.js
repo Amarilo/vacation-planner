@@ -11,7 +11,7 @@ SELECT date FROM vacations WHERE person_id = ?;
 `;
 
 const selectByPersonIdAndDate = `
-SELECT date FROM vacations WHERE person_id = ? AND date >= date(?, '-1 year');
+SELECT date FROM vacations WHERE person_id = ? AND date >= date(?, '-1 year') ORDER BY date;
 `;
 
 const countTillNowByPersonIdAndDate = `

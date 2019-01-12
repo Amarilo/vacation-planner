@@ -3,6 +3,7 @@
     </div>
     <div class="header-nav">
         <a class="active nav-link nav-text" [ngClass]="{'active': pageIndex === 0}" (click)="setPage(0)">Kalendorius</a>
+        <a class="nav-link nav-text" [ngClass]="{'active': pageIndex === 2}" (click)="setPage(2)">Atostogų datos</a>
         <a class="nav-link nav-text" [ngClass]="{'active': pageIndex === 1}" (click)="setPage(1)">Nustatymai</a>
     </div>
 </header>
@@ -13,6 +14,7 @@
   <div class="clr-col">
     <app-month-view [hidden]="pageIndex !== 0"></app-month-view>
     <app-admin-page *ngIf="pageIndex === 1"></app-admin-page>
+    <app-vacation-dates-table *ngIf="pageIndex === 2"></app-vacation-dates-table>
   </div>
 </div>
 
