@@ -29,7 +29,7 @@ export class VacationService {
   }
 
   getYears() {
-    this.dbService.getYears(new Date().getFullYear()).then((years) => {
+    this.dbService.getYears().then((years) => {
       this.years = years;
       this.yearsEmitter.next(years)
     });

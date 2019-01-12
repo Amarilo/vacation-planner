@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS year_setup(
 );
 `;
 
-const selectYearsGE = `
-SELECT * FROM year_setup WHERE year >= ?;
+const selectYears = `
+SELECT * FROM year_setup;
 `;
 
 const deleteAll = `
@@ -36,7 +36,7 @@ DELETE FROM year_setup WHERE year = ?;
 
 module.exports = {
   createTable,
-  selectYearsGE,
+  selectYears,
   insertMock,
   deleteAll,
   insert,

@@ -56,10 +56,10 @@ export class DatabaseService {
   }
   
   //Years
-  getYears(year) {
-    this.ipc.send('get-years-ge', year);
+  getYears() {
+    this.ipc.send('get-years');
     return new Promise((resolve, reject) => {
-      this.ipc.on('get-years-ge', (e, years, err) => {
+      this.ipc.on('get-years', (e, years, err) => {
         if(err) reject(err);
         resolve(years);
       });

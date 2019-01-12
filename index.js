@@ -70,11 +70,11 @@ ipcMain.on('get-public-holidays', function() {
     });
 });
 
-ipcMain.on('get-years-ge', function(e, year) {
-  sqlite.getYearsGE(year)
-    .then((rows) => mainWindow.webContents.send('get-years-ge', rows, null))
+ipcMain.on('get-years', function() {
+  sqlite.getYears()
+    .then((rows) => mainWindow.webContents.send('get-years', rows, null))
     .catch((err) => {
-      mainWindow.webContents.send('get-years-ge', [], err);
+      mainWindow.webContents.send('get-years', [], err);
       throw err;
     });
 });

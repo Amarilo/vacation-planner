@@ -82,9 +82,9 @@ const updatePerson = (person) => {
   });
 };
 
-const getYearsGE = (year) => {
+const getYears = () => {
   return new Promise((resolve,reject) => {
-    db.all(query.years.selectYearsGE, [year], (err, rows) => {
+    db.all(query.years.selectYears, [], (err, rows) => {
       if(err) reject(err);
       resolve(rows);
     });
@@ -222,7 +222,7 @@ module.exports = {
   updatePerson,
   deletePersonById,
 
-  getYearsGE,
+  getYears,
   insertYear,
   updateYear,
   deleteYear,
