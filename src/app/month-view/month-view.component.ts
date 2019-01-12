@@ -39,12 +39,17 @@ export class MonthViewComponent implements OnInit {
     );
   }
 
-  updatePerson(){
-    let today = moment();
+  disableSaveBtn(){
     let person = this.uiSelectionService.getSelected();
-    this.personService.getVacationsCountTillNow(person).then((vacationCount) => {
-      let vacations = this.calcVacationInfo(today, vacationCount);
-      person.from_date = today.format('YYYY-MM-DD');
+    return moment().isBefore(this.selectedDate, 'day') || moment(this.selectedDate).isBefore(person.from_date, 'day');
+  }
+
+  updatePerson(){
+    let selectedDate = moment(this.selectedDate);
+    let person = this.uiSelectionService.getSelected();
+    this.personService.getVacationsCountInPeriod(person, selectedDate.format('YYYY-MM-DD')).then((vacationCount) => {
+      let vacations = this.calcVacationInfo(selectedDate, vacationCount);
+      person.from_date = selectedDate.format('YYYY-MM-DD');
       person.vacation_days = vacations.remaining;
       this.personService.updatePerson(person);
     }).catch(

@@ -6,16 +6,12 @@ CREATE TABLE IF NOT EXISTS vacations(
 );
 `;
 
-const selectByPersonId = `
-SELECT date FROM vacations WHERE person_id = ?;
-`;
-
 const selectByPersonIdAndDate = `
 SELECT date FROM vacations WHERE person_id = ? AND date >= date(?, '-1 year') ORDER BY date;
 `;
 
-const countTillNowByPersonIdAndDate = `
-SELECT count(*) count FROM vacations WHERE person_id = ? AND date BETWEEN ? AND date('now', 'localtime');
+const countInPeriodByPersonId = `
+SELECT count(*) count FROM vacations WHERE person_id = ? AND date BETWEEN ? AND ?;
 `;
 
 const countSinceByPersonIdAndDate = `
@@ -54,9 +50,8 @@ AND date IN
 
 module.exports = {
   createTable,
-  // selectByPersonId,
   selectByPersonIdAndDate,
-  countTillNowByPersonIdAndDate,
+  countInPeriodByPersonId,
   countSinceByPersonIdAndDate,
   insertMock,
   deleteAll,

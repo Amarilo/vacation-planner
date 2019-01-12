@@ -174,9 +174,9 @@ const getVacationCountSinceDate = (personId, date) => {
   });
 };
 
-const getVacationCountTillNow = (personId, date) => {
+const getVacationCountInPeriod = (personId, from, to) => {
   return new Promise((resolve,reject) => {
-    db.get(query.vacations.countTillNowByPersonIdAndDate, [personId, date], (err, row) => {
+    db.get(query.vacations.countInPeriodByPersonId, [personId, from, to], (err, row) => {
       if(err) reject(err);
       resolve(row);
     });
@@ -234,7 +234,8 @@ module.exports = {
   // getVacations,
   getVacationsSinceDate,
   getVacationCountSinceDate,
-  getVacationCountTillNow,
+  // getVacationCountTillNow,
+  getVacationCountInPeriod,
   insertVacations,
   deleteVacations,
   deleteAllHolidays,

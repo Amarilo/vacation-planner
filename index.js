@@ -106,11 +106,11 @@ ipcMain.on('get-vacation-count-since', function(e, personId, date) {
     });
 });
 
-ipcMain.on('get-vacation-count-till-now', function(e, personId, date) {
-  sqlite.getVacationCountTillNow(personId, date)
-    .then((row) => mainWindow.webContents.send('get-vacation-count-till-now', row.count, null))
+ipcMain.on('get-vacation-count-in-period', function(e, personId, from, to) {
+  sqlite.getVacationCountInPeriod(personId, from, to)
+    .then((row) => mainWindow.webContents.send('get-vacation-count-in-period', row.count, null))
     .catch((err) => {
-      mainWindow.webContents.send('get-vacation-count-till-now', 0, err);
+      mainWindow.webContents.send('get-vacation-count-in-period', 0, err);
       throw err;
     });
 });

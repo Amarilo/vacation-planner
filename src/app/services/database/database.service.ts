@@ -137,10 +137,10 @@ export class DatabaseService {
     });
   }
 
-  getVacationCountTillNow(person) {
-    this.ipc.send('get-vacation-count-till-now', person.id, person.from_date);
+  getVacationCountInPeriod(person, to_date) {
+    this.ipc.send('get-vacation-count-in-period', person.id, person.from_date, to_date);
     return new Promise((resolve, reject) => {
-      this.ipc.on('get-vacation-count-till-now', (e, count, err) => {
+      this.ipc.on('get-vacation-count-in-period', (e, count, err) => {
         if(err) reject(err);
         resolve(count);
       });

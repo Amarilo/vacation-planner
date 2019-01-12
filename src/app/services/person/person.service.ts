@@ -51,8 +51,8 @@ export class PersonService {
     return this.dbService.getVacationDatesByPersonSince(person);
   }
 
-  getVacationsCountTillNow(person) {
-    return this.dbService.getVacationCountTillNow(person);
+  getVacationsCountInPeriod(person, to_date) {
+    return this.dbService.getVacationCountInPeriod(person, to_date);
   }
 
   getVacationsCountSince(person) {
