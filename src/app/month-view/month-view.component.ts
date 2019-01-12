@@ -44,6 +44,10 @@ export class MonthViewComponent implements OnInit {
     return moment().isBefore(this.selectedDate, 'day') || moment(this.selectedDate).isBefore(person.from_date, 'day');
   }
 
+  getSelectedDateStr() {
+    return moment(this.selectedDate).format('YYYY-MM-DD');
+  }
+
   updatePerson(){
     let selectedDate = moment(this.selectedDate);
     let person = this.uiSelectionService.getSelected();

@@ -1,5 +1,5 @@
 <div class="clr-row clr-justify-content-end vacation-info-div">
-  <button class="btn btn-primary" (click)="updatePerson()" [disabled]="disableSaveBtn()">Išsaugoti Šiandienos Duomenis</button>
+  <button class="btn btn-primary" (click)="updatePerson()" [disabled]="disableSaveBtn()">Išsaugoti {{getSelectedDateStr()}} Duomenis</button>
   <span class="vacation-info">
     <span>
       Nuo: <b>{{uiSelectionService.selectedPerson.from_date || 'YYYY-MM-DD'}}</b>
