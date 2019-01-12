@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS person(
 `;
 
 const selectAll = `
-SELECT * FROM person;
+SELECT * FROM person ORDER BY name;
 `;
 const selectMaxId = `
 SELECT max(id) id FROM person;

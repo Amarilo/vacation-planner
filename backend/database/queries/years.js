@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS year_setup(
 `;
 
 const selectYears = `
-SELECT * FROM year_setup;
+SELECT * FROM year_setup ORDER BY year;
 `;
 
 const deleteAll = `
